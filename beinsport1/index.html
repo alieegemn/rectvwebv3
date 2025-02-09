@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BEIN SPORT 1 - RECTV</title>
+    <title>BEİN SPORT 1 - REC TV</title>
 
     <!-- Google Fonts'tan Lexend Deca fontunu ekliyoruz -->
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400&display=swap" rel="stylesheet">
@@ -132,7 +132,7 @@
         }
 
         showPopup();
-        setInterval(showPopup, 50000);
+        setInterval(showPopup, 20000);
     </script>
 
 
@@ -141,11 +141,33 @@
   
 
 
-<iframe allowfullscreen="" class="player cursor-default-hover" frameborder="0" height="925" name="ekrani" scrolling="no" src="https://rectvwebv3.pages.dev/loading/" width="100%"></iframe>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEİN SPORT 1 - REC TV</title>
+    <style>
+        /* Sayfa geneli ve iframe için tam ekran stil */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Sayfanın taşmasını engeller */
+        }
 
-<p><a href="https://rectvwebv3.pages.dev" target="iframe_a">Anasayfa</a></p>
+        iframe {
+            width: 100vw;  /* Tam ekran genişliği */
+            height: 100vh; /* Tam ekran yüksekliği */
+            border: none;
+        }
+    </style>
+</head>
+<body>
 
-<p>YÜKLENİYOR YAZIYORSA YÜKLENİYORDUR YAZMASA HATA YAZARSA YÜKLENMİYORDUR AMA YÜKLENİYOR YAZARSA BEKLEYİN - REC TV</p>
+    <!-- iframe, tüm ekranı kaplayacak şekilde yerleştirilmiştir -->
+    <iframe src="https://rectvwebv3.pages.dev/loading/" allowfullscreen></iframe>
 
 </body>
 </html>
+
