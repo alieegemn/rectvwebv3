@@ -1,55 +1,157 @@
-<html>
+<!DOCTYPE html>
+<html lang="tr">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="1; url='https://pandaspor.live/'" />
-  <style>
-    .loader {
-      border: 16px solid #f3f3f3;
-      border-radius: 50%;
-      border-top: 16px solid blue;
-      border-bottom: 16px solid blue;
-      width: 120px;
-      height: 120px;
-      -webkit-animation: spin 2s linear infinite;
-      animation: spin 2s linear infinite;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canlı Yayın Kanalları - RecTV BETA</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #0b0b0b;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 0;
+  }
 
-    @-webkit-keyframes spin {
-      0% { -webkit-transform: rotate(0deg); }
-      100% { -webkit-transform: rotate(360deg); }
-    }
+  h1 {
+    color: #ff4444;
+    margin-bottom: 20px;
+  }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+  .channel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 90%;
+    max-width: 400px;
+  }
 
-    /* Reklam logolarını tamamen gizle */
-    [data-watermark] {
-      display: none !important;
-      pointer-events: none !important;
-      visibility: hidden !important;
-    }
-  </style>
+  .channel-button {
+    background: linear-gradient(90deg, #202020, #292929);
+    border: 1px solid #444;
+    border-radius: 10px;
+    padding: 12px 18px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
 
-  <!-- Otomatik olarak sonradan gelen reklamı DOM'dan kaldır -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const interval = setInterval(() => {
-        const ad = document.querySelector('[data-watermark]');
-        if (ad) {
-          ad.remove();
-          clearInterval(interval);
-        }
-      }, 500);
-    });
-  </script>
+  .channel-button:hover {
+    background: linear-gradient(90deg, #ff4444, #ff6600);
+    transform: scale(1.03);
+  }
+
+  .live-badge {
+    background: #e50914;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  /* Fullscreen iframe view */
+  .player-container {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 999;
+  }
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .top-bar {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .back-btn {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid #444;
+    border-radius: 8px;
+    color: white;
+    font-size: 15px;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+
+  .channel-name {
+    background: rgba(0,0,0,0.6);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+  }
+</style>
 </head>
 <body>
 
-  <h2>REC TV YÜKLENİYOR</h2>
+  <h1>📺 Canlı Yayın Kanalları- RecTV BETA 📺</h1>
 
-  <div class="loader"></div>
+  <div class="channel-list">
+    <div class="channel-button" data-url="https://t24giris2.cfd/ch.html?id=yayinnbatv">NBA TV <span class="live-badge">Canlı</span></div>
+    <div class="channel-button" data-url="https://t24giris2.cfd/ch.html?id=yayinex3">Go Ahead - Aston Villa <span class="live-badge">Canlı</span></div>
+    <div class="channel-button" data-url="https://t24giris2.cfd/ch.html?id=yayinex5">Genk - Real Betis <span class="live-badge">Canlı</span></div>
+    <div class="channel-button" data-url="https://t24giris2.cfd/ch.html?id=yayinex7">Lyon - Basel <span class="live-badge">Canlı</span></div>
+    <div class="channel-button" data-url="https://t24giris2.cfd/ch.html?id=yayin1">Bein Sports 1 <span class="live-badge">Canlı</span></div>
+    <div class="channel-button" data-url="https://t24giris2.cfd/ch.html?id=yayinb2">Bein Sports 2 <span class="live-badge">Canlı</span></div>
+    <div class="channel-button" data-url="https://t24giris2.cfd/ch.html?id=yayintv8">TV8 <span class="live-badge">Canlı</span></div>
+    <div class="channel-button" data-url="https://t24giris2.cfd/ch.html?id=yayinas">A Spor <span class="live-badge">Canlı</span></div>
+    <div class="channel-button" data-url="https://t24giris2.cfd/ch.html?id=yayineu1">Euro Sport 1 <span class="live-badge">Canlı</span></div>
+    <div class="channel-button" data-url="https://t24giris2.cfd/ch.html?id=yayineu2">Euro Sport 2 <span class="live-badge">Canlı</span></div>
+  </div>
+
+  <!-- Fullscreen player -->
+  <div class="player-container" id="playerContainer">
+    <div class="top-bar">
+      <button class="back-btn" onclick="closePlayer()">⬅️ Geri Dön</button>
+      <div class="channel-name" id="channelName"></div>
+    </div>
+    <iframe id="channelFrame" allowfullscreen></iframe>
+  </div>
+
+<script>
+  const buttons = document.querySelectorAll('.channel-button');
+  const player = document.getElementById('playerContainer');
+  const frame = document.getElementById('channelFrame');
+  const nameBox = document.getElementById('channelName');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const url = btn.getAttribute('data-url');
+      const name = btn.textContent.replace('Canlı', '').trim();
+      frame.src = url;
+      nameBox.textContent = name;
+      player.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closePlayer() {
+    player.style.display = 'none';
+    frame.src = '';
+    document.body.style.overflow = 'auto';
+  }
+</script>
 
 </body>
 </html>
